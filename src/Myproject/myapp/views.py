@@ -10,7 +10,7 @@ class Helloapiview(APIView):
     serializer_class = serializers.Helloserializer
 
     def get(self , request , format = None):
-        list = ['item1' , 'item2' , 'item 3' , 'item4']
+        list = ['item1' , 'item2' , 'item3' , 'item4']
         return Response({'Message' : "Hello" , 'list' : list})
 
 
