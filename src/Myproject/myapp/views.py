@@ -1,14 +1,25 @@
 from django.shortcuts import render
-from rest_framework.views import APIView
 from rest_framework.response import Response
-
+from rest_framework.views import APIView
+from rest_framework import status
+from . import serializers
 # Create your views here.
-class HelloApiView(APIView):
+
+class Helloapiview(APIView):
+
+    serializer_class = serializers.Helloserializer
 
     def get(self , request , format = None):
-        an_apiview = [
-            'content 1',
-            'content 2',
-            'content 3'
-        ]
-        return Response({'message':'Hello' , 'an_api view' : an_apiview})
+        list = ['item1' , 'item2' , 'item 3' , 'item4']
+        return Response({'Message' : "Hello" , 'list' : list})
+
+
+    def post(self , request):
+
+        serializer = serializers.Helloserializer(data=request.data)
+        if serializer.is_valid():
+            name = serializer.data.get('name')
+            message = 'Hello {0}'.format(name)
+            return Response({'message' : message})
+        else:
+            return Response(serializer.errors , status = status.HTTP_400_BAD_REQUEST)
