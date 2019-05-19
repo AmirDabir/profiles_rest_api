@@ -42,8 +42,11 @@ class UserProfile(AbstractBaseUser , PermissionsMixin): # user model class
     USERNAME_FIELD='email' # sets the username field
     REQUIRED_FIELDS=['name'] # specifies which fileds are required
 
-    def get_name(self):
+    def get_full_name(self):
         return self.name
+
+    def get_short_name(self):
+        return self.name    
 
     def __str__(self): # is the ToString method in c#
         return self.email
