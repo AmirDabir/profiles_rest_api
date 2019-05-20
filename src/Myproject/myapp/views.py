@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from . import serializers
 from rest_framework import viewsets
+from . import models
 # Create your views here.
 
 # The Apiview class
@@ -68,3 +69,8 @@ class Helloviewset(viewsets.ViewSet):
 
     def destroy(self , request  , pk = None):
         return Response({'http method' : 'destroy'})
+
+# Userprofile Viewset
+class Userprofileviewset(viewsets.ModelViewSet):
+    serializer_class = serializers.Userprofileserializer
+    queryset = models.UserProfile.objects.all()
