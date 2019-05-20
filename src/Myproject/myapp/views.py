@@ -3,8 +3,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from . import serializers
+from rest_framework import viewsets
 # Create your views here.
 
+# The Apiview class
 class Helloapiview(APIView):
 
     serializer_class = serializers.Helloserializer
@@ -33,3 +35,11 @@ class Helloapiview(APIView):
 
     def delete(self , request , pk = None):
         return Response({'method' : 'delete'})
+
+# The Viewset class
+
+class Helloviewset(viewsets.ViewSet):
+
+    def list(self , request):
+        list = ['item1' ,'item2' , 'item3' , 'item4']
+        return Response({'message':'hello view set' , 'list' : list})
