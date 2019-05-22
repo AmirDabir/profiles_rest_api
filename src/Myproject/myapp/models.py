@@ -46,7 +46,17 @@ class UserProfile(AbstractBaseUser , PermissionsMixin): # user model class
         return self.name
 
     def get_short_name(self):
-        return self.name    
+        return self.name
 
     def __str__(self): # is the ToString method in c#
         return self.email
+
+# Feed model
+
+class Profilefeeditem(models.Model):
+        user_profile = models.ForeignKey('UserProfile',on_delete= models.CASCADE)
+        status_text = models.CharField(max_length = 255)
+        created_on = models.DateTimeField(auto_now_add=True)
+
+        def __str__(self):
+            return self.status_text
