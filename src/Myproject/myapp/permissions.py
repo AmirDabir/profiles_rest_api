@@ -8,3 +8,12 @@ class Updateownprofile(permissions.BasePermission):
              return True
 
         return request.user.id == obj.id
+# permissions for User profile status
+class Updateownstatus(permissions.BasePermission):
+
+    def has_object_permission:
+
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        return obj.user_profile.id == request.user.id
